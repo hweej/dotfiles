@@ -21,6 +21,7 @@ Plugin 'mtscout6/syntastic-local-eslint.vim'
 
 Plugin 'flazz/vim-colorschemes'
 Bundle 'altercation/vim-colors-solarized'
+Plugin 'JamshedVesuna/vim-markdown-preview'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -67,7 +68,7 @@ let g:ycm_keep_logfiles = 1
 let g:ycm_log_level = 'debug'
 
 """""" SYNTASTIC SETTINGS 
-" let g:syntastic_debug = 3
+""""let g:syntastic_debug = 3
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -99,6 +100,7 @@ set expandtab
 " for js/css files, 2 spaces
 au Filetype javascript setl ts=2 sw=2 sts=2
 au Filetype css setl ts=2 sw=2 sts=2
+au Filetype yaml setl ts=2 sw=2 sts=2
 
 " Make delete key work as expected
 set backspace=indent,eol,start
