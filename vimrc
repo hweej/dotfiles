@@ -9,37 +9,21 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'Valloric/YouCompleteMe' 
-Plugin 'pangloss/vim-javascript'
+
 Bundle "lepture/vim-jinja"
+Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'scrooloose/syntastic'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'manabuishii/vim-cwl'
 
 Plugin 'scrooloose/nerdtree'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
+
+Plugin 'w0rp/ale'
 
 Plugin 'flazz/vim-colorschemes'
 Bundle 'altercation/vim-colors-solarized'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-"Plugin 'ascenator/L9', {'name': 'newL9'}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " ALL OF YOUR PLUGINS MUST BE ADDED BEFORE THIS LINE
@@ -66,9 +50,6 @@ filetype plugin indent on    " required
 """""""""""""""""""""""
 let g:jsx_ext_required = 0
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 """""""""""""""""""""""
 """""""""" YCM SETTINGS
@@ -78,24 +59,30 @@ let g:ycm_keep_logfiles = 1
 let g:ycm_log_level = 'debug'
 
 """""""""""""""""""""""
-""" SYNTASTIC SETTINGS 
+""" ALE ASYNC SETTINGS 
 """""""""""""""""""""""
-"let g:syntastic_debug = 3
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['pylint']
-let g:syntastic_javascript_checkers = ['eslint']
-"let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint' " Look for eslint within local npm installation
-
+let g:ale_linters={
+\   'python': ['flake8'],
+\   'javascript': ['eslint']
+\}
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_open_list=1
+let g:ale_lint_on_save=1
+let g:ale_lint_on_text_changed=1
+let g:ale_echo_cursor=1
+let g:ale_set_highlights=1
+let g:ale_warn_about_trailing_whitespace=1
+"let g:ale_set_loclist=0
+"let g:ale_set_quickfix=1
 
 """""""""""""""""""""""
 """""" MARKDOWN SYNTAX 
 """""""""""""""""""""""
-"let g:vim_markdown_folding_disabled = 1
-"let g:vim_markdown_folding_level = 6
+let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_folding_style_pythonic = 1
+"let g:vim_markdown_folding_level = 6
 
 """""""""""""""""""""""
 """"" NERDTree SETTINGS
@@ -105,16 +92,6 @@ map <C-n> :NERDTreeToggle<CR>
 """""""""""""""""""""""
 "" GENERAL VIM SETTINGS
 """""""""""""""""""""""
-
-" enable syntax highlighting
-" show line numbers
-" indent when moving to the next line while writing code
-" when using the >> or << commands, shift lines by 4 spaces
-" set tabs to have 4 spaces
-" expand tabs into spaces
-" Make delete key work as expected
-" show the matching part of the pair for [] {} and ()
-" enable all Python syntax highlighting features
 syntax enable
 set number
 set autoindent
@@ -123,13 +100,20 @@ set tabstop=4
 set expandtab
 set backspace=indent,eol,start
 set showmatch
+set laststatus=2
 let python_highlight_all = 1
 
-" for js/css files, 2 spaces
+" Tab/Space 
 au Filetype javascript setl ts=2 sw=2 sts=2
-"au Filetype javascript setl ts=4 sw=4 sts=4
 au Filetype css setl ts=2 sw=2 sts=2
 au Filetype yaml setl ts=2 sw=2 sts=2
+au Filetype cwl setl ts=2 sw=2 sts=2
+
+" VIM SPLIT remapping
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 
 """""""""""""""""""""""
@@ -155,11 +139,5 @@ highlight SpellBad     ctermbg=0   ctermfg=1
 
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
-
-" What does completeopt do...
-" set completeopt-=preview
-
-
-
 
 
