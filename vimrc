@@ -21,6 +21,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 
 Plugin 'w0rp/ale'
+Plugin 'whiteinge/diffconflicts'
 
 Plugin 'flazz/vim-colorschemes'
 Bundle 'altercation/vim-colors-solarized'
