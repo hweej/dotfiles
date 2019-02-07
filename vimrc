@@ -66,10 +66,14 @@ let g:ale_linters={
 \   'python': ['flake8'],
 \   'javascript': ['eslint']
 \}
+let g:ale_fixers = {
+\ '*': ['remove_trailing_lines', 'trim_whitespace']
+\}
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-let g:ale_open_list=1
+"let g:ale_open_list=1
+let g:ale_open_list=0
 let g:ale_lint_on_save=1
 let g:ale_lint_on_text_changed=1
 let g:ale_echo_cursor=1
@@ -77,6 +81,7 @@ let g:ale_set_highlights=1
 let g:ale_warn_about_trailing_whitespace=1
 "let g:ale_set_loclist=0
 "let g:ale_set_quickfix=1
+autocmd QuitPre * if empty(&bt) | lclose | endif
 
 """""""""""""""""""""""
 """""" MARKDOWN SYNTAX 
