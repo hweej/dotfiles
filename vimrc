@@ -10,21 +10,28 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe' 
+Plugin 'tpope/vim-surround'
 
+" SYNTAX
 Bundle "lepture/vim-jinja"
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'manabuishii/vim-cwl'
+Plugin 'LukeGoodsell/nextflow-vim'
+Plugin 'vim-perl/vim-perl'
+Plugin 'bash-support.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'godlygeek/tabular'
 
+" LINTING
 Plugin 'w0rp/ale'
 Plugin 'whiteinge/diffconflicts'
 
+" THEMES/COLORS
 Plugin 'flazz/vim-colorschemes'
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""
 " ALL OF YOUR PLUGINS MUST BE ADDED BEFORE THIS LINE
@@ -71,7 +78,7 @@ let g:ale_fixers = {
 \}
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%] [%code%]-%s [%severity%]'
 "let g:ale_open_list=1
 let g:ale_open_list=0
 let g:ale_lint_on_save=1
@@ -107,6 +114,7 @@ set expandtab
 set backspace=indent,eol,start
 set showmatch
 set laststatus=2
+set hlsearch
 let python_highlight_all = 1
 
 " Tab/Space 
